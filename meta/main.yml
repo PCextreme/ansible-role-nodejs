@@ -1,0 +1,21 @@
+---
+galaxy_info:
+  author: "Attila van der Velde"
+  description: "Installs Node.js and npm"
+  company: "PCextreme B.V."
+  license: "license (MIT, BSD)"
+  min_ansible_version: 1.8
+  platforms:
+    - name: EL
+      versions:
+        - 6
+        - 7
+    - name: Ubuntu
+      versions:
+        - trusty
+  categories:
+    - development
+    - web
+
+dependencies:
+  - { role: pcextreme.repo-epel }

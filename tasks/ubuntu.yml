@@ -1,0 +1,17 @@
+---
+- name: Add APT repo file
+  copy: src=nodejs_trusty.list dest=/etc/apt/sources.list.d/nodejs.list owner=root group=root mode=0644
+  register: nodejs_list
+
+- name: Add APT repo key
+  apt_key: id=C7917B12 url=http://keyserver.ubuntu.com/pks/lookup?op=get&search=0xB9316A7BC7917B12 state=present
+  register: nodejs_key
+
+- name: Update apt cache
+  apt: update_cache=yes
+  when: nodejs_list.changed == True or nodejs_key.changed == True
+
+- name: Install Node.js and npm
+  apt: state=present pkg={{ item }}
+  with_items:
+    - nodejs

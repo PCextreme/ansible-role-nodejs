@@ -1,0 +1,7 @@
+---
+- name: Install Node.js and npm
+  yum: enablerepo=epel state=present
+       pkg={{ item }}
+  with_items:
+    - nodejs
+    - npm
